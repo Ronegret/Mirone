@@ -50,20 +50,20 @@ const App: React.FC = () => {
       
       {/* Global Ambient Background - Space Theme */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-         <div className="absolute top-[-20%] left-[-10%] w-[800px] h-[800px] bg-purple-900/20 rounded-full blur-[120px] animate-pulse mix-blend-screen"></div>
-         <div className="absolute bottom-[-20%] right-[-10%] w-[900px] h-[900px] bg-indigo-900/10 rounded-full blur-[120px] mix-blend-screen"></div>
-         <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 w-[600px] h-[600px] bg-blue-900/10 rounded-full blur-[100px]"></div>
+         <div className="absolute top-[-20%] left-[-10%] w-[400px] lg:w-[800px] h-[400px] lg:h-[800px] bg-purple-900/20 rounded-full blur-[120px] animate-pulse mix-blend-screen"></div>
+         <div className="absolute bottom-[-20%] right-[-10%] w-[500px] lg:w-[900px] h-[500px] lg:h-[900px] bg-indigo-900/10 rounded-full blur-[120px] mix-blend-screen"></div>
+         <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 w-[300px] lg:w-[600px] h-[300px] lg:h-[600px] bg-blue-900/10 rounded-full blur-[100px]"></div>
          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
       </div>
 
       {/* Header */}
       <header className="border-b border-white/5 bg-black/50 backdrop-blur-md sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-center relative">
+        <div className="max-w-7xl mx-auto px-6 h-16 lg:h-20 flex items-center justify-center relative">
           
           <div className="flex flex-col items-center justify-center group cursor-default">
             <div className="flex items-center gap-3">
-              <Aperture className="w-6 h-6 text-indigo-500 transition-transform group-hover:rotate-90 duration-700" />
-              <span className="font-light text-2xl tracking-[0.3em] text-white uppercase">Mirone</span>
+              <Aperture className="w-5 h-5 lg:w-6 lg:h-6 text-indigo-500 transition-transform group-hover:rotate-90 duration-700" />
+              <span className="font-light text-xl lg:text-2xl tracking-[0.3em] text-white uppercase">Mirone</span>
             </div>
             <div className="w-8 h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 mt-2 group-hover:w-24 transition-all duration-500 rounded-full"></div>
           </div>
@@ -76,7 +76,7 @@ const App: React.FC = () => {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col items-center w-full pt-8 pb-20 px-4 relative z-10">
+      <main className="flex-1 flex flex-col items-center w-full pt-4 lg:pt-8 pb-20 px-2 lg:px-4 relative z-10">
         
         {step === AppStep.UPLOAD && (
           <UploadSection 
@@ -103,17 +103,17 @@ const App: React.FC = () => {
 
         {step === AppStep.GENERATING && (
           <div className="text-center animate-in fade-in duration-700 flex flex-col items-center justify-center h-[60vh]">
-            <div className="relative w-48 h-48 mb-12">
+            <div className="relative w-32 h-32 lg:w-48 lg:h-48 mb-8 lg:mb-12">
                <div className="absolute inset-0 border-2 border-indigo-900/30 rounded-full"></div>
                <div className="absolute inset-0 border-2 border-transparent border-t-indigo-500 rounded-full animate-spin duration-[2s]"></div>
                <div className="absolute inset-4 border-2 border-transparent border-l-purple-500/50 rounded-full animate-spin duration-[3s] direction-reverse"></div>
                <div className="absolute inset-0 flex items-center justify-center flex-col">
-                 <span className="text-indigo-400 font-light tracking-widest text-sm animate-pulse mb-1">AI PROCESSING</span>
-                 <span className="text-[10px] text-indigo-600 font-bold tracking-wider">{clothing === 'formal' ? 'FORMAL MODE' : 'CASUAL MODE'}</span>
+                 <span className="text-indigo-400 font-light tracking-widest text-xs lg:text-sm animate-pulse mb-1">AI PROCESSING</span>
+                 <span className="text-[9px] lg:text-[10px] text-indigo-600 font-bold tracking-wider">{clothing === 'formal' ? 'FORMAL MODE' : 'CASUAL MODE'}</span>
                </div>
             </div>
-            <h2 className="text-4xl font-thin text-white mb-4 tracking-tight">Construyendo Realidad</h2>
-            <p className="text-indigo-200/50 max-w-md mx-auto font-light text-lg">
+            <h2 className="text-3xl lg:text-4xl font-thin text-white mb-4 tracking-tight">Construyendo Realidad</h2>
+            <p className="text-indigo-200/50 max-w-md mx-auto font-light text-base lg:text-lg px-4">
               La inteligencia artificial está re-imaginando tu perfil con estética {clothing === 'formal' ? 'formal' : 'casual'}.
             </p>
           </div>

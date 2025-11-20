@@ -118,14 +118,15 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-8 h-[70vh] animate-in fade-in duration-700 mb-8">
+    <div className="w-full flex flex-col items-center pb-20">
+      {/* Main Layout: Stack on Mobile, Row on Desktop */}
+      <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-6 lg:gap-8 h-auto lg:h-[80vh] animate-in fade-in duration-700 mb-8">
         
         {/* Image Preview Area */}
-        <div className="flex-1 bg-zinc-900/30 border border-white/10 rounded-3xl flex flex-col relative overflow-hidden group shadow-2xl backdrop-blur-md">
+        <div className="flex-1 bg-zinc-900/30 border border-white/10 rounded-3xl flex flex-col relative overflow-hidden group shadow-2xl backdrop-blur-md h-[50vh] lg:h-auto order-1 lg:order-1">
           
-          {/* Top Toolbar */}
-          <div className="absolute top-6 left-0 right-0 z-20 flex justify-between px-6 pointer-events-none">
+          {/* Top Toolbar (Floating) */}
+          <div className="absolute top-4 lg:top-6 left-0 right-0 z-20 flex justify-between px-4 lg:px-6 pointer-events-none">
               <div className="pointer-events-auto bg-black/60 backdrop-blur px-4 py-2 rounded-full border border-white/10 flex items-center gap-2">
                  {clothing === 'formal' ? <Briefcase className="w-3 h-3 text-indigo-400" /> : <Shirt className="w-3 h-3 text-indigo-400" />}
                  <span className="text-[10px] font-bold text-indigo-200 uppercase tracking-wider">{clothing}</span>
@@ -150,13 +151,13 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
               </div>
           </div>
 
-          {/* Canvas */}
-          <div className="flex-1 flex items-center justify-center p-10 overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]">
-              <div className="relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-lg overflow-hidden max-h-full">
+          {/* Canvas Content */}
+          <div className="flex-1 flex items-center justify-center p-4 lg:p-10 overflow-hidden bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')]">
+              <div className="relative shadow-[0_20px_50px_rgba(0,0,0,0.5)] rounded-lg overflow-hidden w-full h-full flex items-center justify-center">
                   <img 
                       src={currentImage} 
                       alt="Edited" 
-                      className="max-w-full max-h-[50vh] lg:max-h-[60vh] object-contain"
+                      className="max-w-full max-h-full object-contain"
                       style={{ filter: filterString }}
                   />
                   {isProcessingAI && (
@@ -170,24 +171,24 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
               </div>
           </div>
           
-          {/* Bottom Actions */}
-          <div className="absolute bottom-6 w-full flex justify-center pointer-events-none">
-            <div className="flex gap-4 pointer-events-auto">
-                  <button onClick={() => setSettings(DEFAULT_EDITOR_SETTINGS)} className="p-3 bg-black/50 hover:bg-red-900/80 border border-white/10 hover:border-red-500/50 rounded-full text-white transition-colors backdrop-blur-md">
+          {/* Bottom Actions (Desktop: Inside image, Mobile: Below image usually, but keeping inside for now for compactness) */}
+          <div className="absolute bottom-4 lg:bottom-6 w-full flex justify-center pointer-events-none">
+            <div className="flex gap-3 pointer-events-auto">
+                  <button onClick={() => setSettings(DEFAULT_EDITOR_SETTINGS)} className="p-3 bg-black/50 hover:bg-red-900/80 border border-white/10 hover:border-red-500/50 rounded-full text-white transition-colors backdrop-blur-md shadow-lg">
                       <RotateCcw size={18} />
                   </button>
                   
-                  <button onClick={handleDownload} className="flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-full text-white text-sm font-bold tracking-widest uppercase transition-all shadow-[0_0_30px_-5px_rgba(99,102,241,0.5)] hover:scale-105">
-                      <Download size={16} /> Descargar
+                  <button onClick={handleDownload} className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 rounded-full text-white text-xs lg:text-sm font-bold tracking-widest uppercase transition-all shadow-[0_0_30px_-5px_rgba(99,102,241,0.5)] hover:scale-105">
+                      <Download size={16} /> <span className="hidden sm:inline">Descargar</span>
                   </button>
             </div>
           </div>
         </div>
 
         {/* Sidebar Controls */}
-        <div className="w-full lg:w-[400px] bg-black/40 backdrop-blur-xl border border-white/5 rounded-3xl p-0 flex flex-col h-full overflow-hidden">
-          <div className="p-6 border-b border-white/5 flex justify-between items-center">
-              <h2 className="text-lg font-light tracking-[0.2em] text-white uppercase">Estudio</h2>
+        <div className="w-full lg:w-[400px] bg-black/40 backdrop-blur-xl border border-white/5 rounded-3xl p-0 flex flex-col h-[500px] lg:h-full overflow-hidden order-2 lg:order-2">
+          <div className="p-4 lg:p-6 border-b border-white/5 flex justify-between items-center bg-black/20">
+              <h2 className="text-sm lg:text-lg font-light tracking-[0.2em] text-white uppercase">Estudio</h2>
               <button onClick={onReset} className="text-[10px] font-bold text-indigo-400 hover:text-white uppercase tracking-wider border-b border-transparent hover:border-white transition-all">
                   Nueva Sesión
               </button>
@@ -197,21 +198,21 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
           <div className="flex border-b border-white/5">
               <button 
                   onClick={() => setActiveTab('ai')}
-                  className={`flex-1 py-4 text-xs font-bold tracking-widest uppercase flex items-center justify-center transition-all ${activeTab === 'ai' ? 'text-indigo-400 bg-indigo-500/10 border-b-2 border-indigo-500' : 'text-zinc-500 hover:text-white'}`}
+                  className={`flex-1 py-3 lg:py-4 text-[10px] lg:text-xs font-bold tracking-widest uppercase flex items-center justify-center transition-all ${activeTab === 'ai' ? 'text-indigo-400 bg-indigo-500/10 border-b-2 border-indigo-500' : 'text-zinc-500 hover:text-white'}`}
               >
                   <Sparkles className="w-3 h-3 mr-2" /> AI Magic
               </button>
               <button 
                   onClick={() => setActiveTab('adjust')}
-                  className={`flex-1 py-4 text-xs font-bold tracking-widest uppercase flex items-center justify-center transition-all ${activeTab === 'adjust' ? 'text-indigo-400 bg-indigo-500/10 border-b-2 border-indigo-500' : 'text-zinc-500 hover:text-white'}`}
+                  className={`flex-1 py-3 lg:py-4 text-[10px] lg:text-xs font-bold tracking-widest uppercase flex items-center justify-center transition-all ${activeTab === 'adjust' ? 'text-indigo-400 bg-indigo-500/10 border-b-2 border-indigo-500' : 'text-zinc-500 hover:text-white'}`}
               >
                   <Sliders className="w-3 h-3 mr-2" /> Ajustes
               </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-4 lg:p-6 custom-scrollbar">
               {activeTab === 'adjust' ? (
-              <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
+              <div className="space-y-6 lg:space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
                   {[
                       { icon: Sun, label: "Brillo", key: 'brightness', max: 200 },
                       { icon: Contrast, label: "Contraste", key: 'contrast', max: 200 },
@@ -220,7 +221,7 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
                       { icon: Moon, label: "Sepia", key: 'sepia', max: 100 },
                       { icon: Droplet, label: "Blur", key: 'blur', max: 10, step: 0.5 },
                   ].map((item) => (
-                      <div key={item.label} className="space-y-3 group">
+                      <div key={item.label} className="space-y-2 lg:space-y-3 group">
                           <div className="flex justify-between text-xs font-medium text-zinc-400 group-hover:text-indigo-300 transition-colors uppercase tracking-wider">
                               <span className="flex items-center"><item.icon className="w-3 h-3 mr-2" /> {item.label}</span>
                               <span className="font-mono text-indigo-400">{settings[item.key as keyof EditorSettings]}</span>
@@ -232,7 +233,7 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
                               step={item.step || 1}
                               value={settings[item.key as keyof EditorSettings]} 
                               onChange={(e) => handleSettingChange(item.key as keyof EditorSettings, Number(e.target.value))}
-                              className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400"
+                              className="w-full h-1 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-indigo-500 hover:accent-indigo-400 touch-action-manipulation"
                           />
                       </div>
                   ))}
@@ -253,7 +254,7 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
                           value={customPrompt}
                           onChange={(e) => setCustomPrompt(e.target.value)}
                           placeholder="Escribe tu instrucción... (Ej: Eliminar fondo)"
-                          className="w-full bg-black/30 border border-white/10 group-hover:border-indigo-500/50 rounded-lg p-4 text-sm text-zinc-300 placeholder-zinc-600 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none h-32 transition-colors"
+                          className="w-full bg-black/30 border border-white/10 group-hover:border-indigo-500/50 rounded-lg p-3 text-sm text-zinc-300 placeholder-zinc-600 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 outline-none resize-none h-24 lg:h-32 transition-colors"
                           disabled={isProcessingAI}
                       />
                       <button 
@@ -297,7 +298,7 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
                                   key={idx}
                                   onClick={() => handleMagicFix(sugg)}
                                   disabled={isProcessingAI}
-                                  className="text-left px-4 py-3 bg-zinc-900/50 hover:bg-indigo-900/20 border-l-2 border-transparent hover:border-indigo-500 text-xs text-zinc-400 hover:text-indigo-100 transition-all rounded-r-lg"
+                                  className="text-left px-4 py-3 bg-zinc-900/50 hover:bg-indigo-900/20 border-l-2 border-transparent hover:border-indigo-500 text-xs text-zinc-400 hover:text-indigo-100 transition-all rounded-r-lg touch-action-manipulation"
                               >
                                   {sugg}
                               </button>
@@ -311,37 +312,37 @@ const Editor: React.FC<EditorProps> = ({ originalImage, onReset, onSwitchStyle, 
       </div>
 
       {/* Bottom Slider for Styles */}
-      <div className="w-full max-w-7xl animate-in slide-in-from-bottom-10 duration-1000 px-4 mb-8">
-         <div className="flex items-center gap-2 mb-4">
+      <div className="w-full max-w-7xl animate-in slide-in-from-bottom-10 duration-1000 px-0 lg:px-4 mb-8 order-3">
+         <div className="flex items-center gap-2 mb-4 px-4 lg:px-0">
             <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></div>
             <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-[0.2em]">Cambiar Estilo ({clothing})</h3>
          </div>
          
-         <div className="overflow-x-auto pb-4 custom-scrollbar">
-            <div className="flex gap-4 w-max">
+         <div className="overflow-x-auto pb-4 custom-scrollbar px-4 lg:px-0">
+            <div className="flex gap-3 lg:gap-4 w-max">
                <button
-                  onClick={() => onSwitchStyle(STYLES_DATA.find(s => s.id === STYLES_DATA[0].id) || STYLES_DATA[0])} // Hack to re-trigger current style
-                  className="group w-32 h-40 flex-shrink-0 rounded-xl border-2 border-dashed border-indigo-500/30 hover:border-indigo-500 flex flex-col items-center justify-center transition-all"
+                  onClick={() => onSwitchStyle(STYLES_DATA.find(s => s.id === STYLES_DATA[0].id) || STYLES_DATA[0])} 
+                  className="group w-28 h-36 lg:w-32 lg:h-40 flex-shrink-0 rounded-xl border-2 border-dashed border-indigo-500/30 hover:border-indigo-500 flex flex-col items-center justify-center transition-all"
                >
-                  <RefreshCw className="w-8 h-8 text-indigo-500 mb-2 group-hover:rotate-180 transition-transform duration-700" />
-                  <span className="text-[10px] font-bold text-indigo-300 uppercase tracking-wider">Reintentar</span>
+                  <RefreshCw className="w-6 h-6 lg:w-8 lg:h-8 text-indigo-500 mb-2 group-hover:rotate-180 transition-transform duration-700" />
+                  <span className="text-[9px] lg:text-[10px] font-bold text-indigo-300 uppercase tracking-wider">Reintentar</span>
                </button>
 
                {STYLES_DATA.map((style) => (
                  <button
                     key={style.id}
                     onClick={() => onSwitchStyle(style)}
-                    className="group relative w-32 h-40 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 hover:border-indigo-500 transition-all duration-300"
+                    className="group relative w-28 h-36 lg:w-32 lg:h-40 flex-shrink-0 rounded-xl overflow-hidden border border-white/10 hover:border-indigo-500 transition-all duration-300"
                  >
-                    {/* Background Gradient representing the "drawing" */}
+                    {/* Background Gradient */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${style.gradient} opacity-60 group-hover:opacity-90 transition-opacity`}></div>
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                     
-                    <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent flex flex-col items-center">
-                        <div className="w-8 h-8 rounded-full bg-black/50 border border-white/20 flex items-center justify-center mb-2 text-white group-hover:scale-110 transition-transform">
+                    <div className="absolute bottom-0 left-0 right-0 p-2 lg:p-3 bg-gradient-to-t from-black/90 to-transparent flex flex-col items-center">
+                        <div className="w-6 h-6 lg:w-8 lg:h-8 rounded-full bg-black/50 border border-white/20 flex items-center justify-center mb-2 text-white group-hover:scale-110 transition-transform">
                            {getIcon(style.icon)}
                         </div>
-                        <span className="text-[10px] font-bold text-white uppercase tracking-wider text-center leading-tight">{style.name}</span>
+                        <span className="text-[9px] lg:text-[10px] font-bold text-white uppercase tracking-wider text-center leading-tight">{style.name}</span>
                     </div>
                  </button>
                ))}
