@@ -1,20 +1,28 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Mirone — AI Profile Picture Studio
 
-# Run and deploy your AI Studio app
+Generate and edit professional profile pictures with AI, powered by
+**Google Gemini 2.5 Flash Image**. Upload a photo, pick a style, and refine the
+result in a built-in editor.
 
-This contains everything you need to run your app locally.
+<!-- 📸 Tip: add a screenshot here → ![Mirone](public/screenshot.png) -->
 
-View your app in AI Studio: https://ai.studio/apps/drive/1XKN0OV5_idHRI6xJFJfhV3V76CPiaW6X
+## ✨ Features
+- Upload a photo and generate styled variations
+- Style selector with multiple looks
+- In-app editor to refine the output
+- Clean, fast interface
 
-## Run Locally
+## 🛠️ Tech stack
+`React 19` · `TypeScript` · `Vite` · `@google/genai (Gemini 2.5 Flash Image)` · `lucide-react`
 
-**Prerequisites:**  Node.js
+## 🚀 Run locally
+```bash
+npm install
+# create .env.local and add your key:
+#   GEMINI_API_KEY=your_key_here
+npm run dev
+```
 
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 👤 Author
+**Rodrigo Negrete** — AI Product Designer & Automation Architect
+[Portfolio](https://www.rodrigonegrete.es) · [LinkedIn](https://linkedin.com/in/rodrigonegretearos)
