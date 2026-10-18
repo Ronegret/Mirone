@@ -1,10 +1,11 @@
-# Mirone — AI Profile Picture Studio
+<div align="center">
 
-Generate and edit professional profile pictures with AI, powered by
-**Google Gemini 2.5 Flash Image**. Upload a photo, pick a style, and refine the
-result in a built-in editor.
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=20,12,24&height=170&section=header&text=Mirone&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=AI%20Profile-Picture%20Studio&descSize=16&descAlignY=60&animation=fadeIn" alt="Mirone" />
 
-<!-- 📸 Tip: add a screenshot here → ![Mirone](public/screenshot.png) -->
+</div>
+
+## 🧭 Overview
+Generate and edit professional profile pictures with AI, powered by Google Gemini 2.5 Flash Image. Upload a photo, pick a style, and refine the result in a built-in editor.
 
 ## ✨ Features
 - Upload a photo and generate styled variations
@@ -12,17 +13,20 @@ result in a built-in editor.
 - In-app editor to refine the output
 - Clean, fast interface
 
-## 🛠️ Tech stack
-`React 19` · `TypeScript` · `Vite` · `@google/genai (Gemini 2.5 Flash Image)` · `lucide-react`
+## 🛠️ Built with
+`React 19` · `TypeScript` · `Vite` · `Gemini API`
 
 ## 🚀 Run locally
 ```bash
 npm install
-# create .env.local and add your key:
-#   GEMINI_API_KEY=your_key_here
+# add GEMINI_API_KEY to .env.local
 npm run dev
 ```
 
-## 👤 Author
-**Rodrigo Negrete** — AI Product Designer & Automation Architect
-[Portfolio](https://www.rodrigonegrete.es) · [LinkedIn](https://linkedin.com/in/rodrigonegretearos)
+
+---
+
+<div align="center">
+<sub>Made by <b>Rodrigo Negrete</b> — AI Product Designer &amp; Automation Architect<br/>
+<a href="https://www.rodrigonegrete.es">Portfolio</a> · <a href="https://linkedin.com/in/rodrigonegretearos">LinkedIn</a> · <a href="https://github.com/Ronegret">GitHub</a></sub>
+</div>
